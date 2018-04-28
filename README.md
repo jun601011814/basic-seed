@@ -22,12 +22,12 @@
 
 ### 配置css编译环境
 
-#####1. 找到配置文件：build/gulp.config.js
-#####2. 修改cssLang变量
+1. 找到配置文件：build/gulp.config.js
+2. 修改cssLang变量
 ```javascript
 const cssLang = 'cssnext' // css编译器：scss || less || cssnext
 ```
-#####3. 重新运行gulp命令即可
+3. 重新运行gulp命令即可
 
 ### 样式文件目录说明
 1. modules目录存放变量、混合宏等不生成css代码的文件
