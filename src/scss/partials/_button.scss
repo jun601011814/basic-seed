@@ -1,0 +1,7 @@
+// ======== 按钮样式表 ========
+@import "../modules/variables";
+@import "../modules/mixins";
+
+[class*="u-btn"] {
+  @include set-button;
+}

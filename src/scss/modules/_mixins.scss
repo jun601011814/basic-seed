@@ -1,0 +1,198 @@
+// ======== mixins ========
+@import "./variables";
+
+// 设置flex布局
+@mixin set-flex ($direction: row, $wrap: nowrap) {
+  display: flex;
+  flex-flow: $direction $wrap;
+}
+
+// 设置宽高
+@mixin set-size ($width: auto, $height: auto) {
+  width: $width;
+  height: $height;
+}
+
+// 设置清除浮动
+@mixin set-clear-float () {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  .f-float-left,
+  .f-pull-left,
+  .f-fl {
+    display: block;
+    float: left;
+  }
+
+  .f-float-right,
+  .f-pull-right,
+  .f-fr {
+    float: right;
+  }
+}
+
+// 设置弹窗初始化
+@mixin set-modal ($background: rgba(0, 0, 0, .6), $z-index: 15) {
+  @include set-size(100%, 100%);
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: $background;
+  z-index: $z-index;
+
+  & > .wrapper {
+    @include set-flex;
+    @include set-size(100%, 100%);
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+}
+
+// 设置背景色
+@mixin set-bg-init ($color: transparent, $image: none, $size: contain, $pos: center, $repeat: no-repeat) {
+  background: {
+    color: $color;
+    image: $image;
+    repeat: $repeat;
+    position: $pos;
+    size: $size;
+  }
+}
+
+// 设置按钮初始化
+@mixin set-button () {
+  @include set-bg-init;
+  display: inline-block;
+  padding: 0;
+  border: none;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// 设置icon
+@mixin set-icon () {
+  @include set-bg-init;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+
+  &.no-offset {
+    position: static;
+    top: auto;
+  }
+}
+
+// 设置图片容器
+@mixin set-image-container ($radius: 0, $mode: cover) {
+  display: inline-block;
+  line-height: 1;
+  border-radius: $radius;
+  font-size: 0;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+
+  & > img {
+    @include set-size(100%, 100%);
+    vertical-align: middle;
+    object-fit: $mode;
+  }
+}
+
+// 设置单选、多选初始样式
+@mixin set-check ($type) {
+  display: inline-block;
+  position: relative;
+
+  & > label {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  & > input[type="#{$type}"] {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
+// 设置文件选择器
+@mixin set-file-picker () {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+
+  input[type="file"] {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+// 设置文章内容容器默认样式
+@mixin set-article-content ($font-size: 15px, $color: $font-color-default) {
+  text-align: justify;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: $font-size;
+  color: $color;
+
+  img,
+  audio,
+  video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+// 设置单行模式
+@mixin set-text-single-line ($width: 100%) {
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 多行省略
+@mixin set-text-multi-line ($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
+
+// 设置文本：中英文混编时，英文单词可在中间断行
+@mixin set-text-break-all () {
+  word-break: break-all;
+}
+
+// 设置文本：中英文混编时，英文单词整个断行
+@mixin set-text-break-word () {
+  word-wrap: break-word;
+}

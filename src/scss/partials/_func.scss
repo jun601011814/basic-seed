@@ -1,0 +1,9 @@
+// ======== 辅助（功能）类 ========
+@import "../modules/variables";
+@import "../modules/mixins";
+
+// 清除浮动
+.f-clear-float,
+.f-clearfix {
+  @include set-clear-float;
+}

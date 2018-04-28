@@ -1,0 +1,34 @@
+// ======== 表单组件样式表 ========
+@import "../modules/variables";
+@import "../modules/mixins";
+
+// 重置输入框样式
+input[type="text"],
+input[type="number"],
+input[type="search"],
+textarea {
+  max-width: 100%;
+
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+// ==== 文件选择器 ====
+.u-file-picker {
+  @include set-file-picker;
+}
+
+// ==== 单选 ====
+[class*="u-radio"] {
+  @include set-check(radio);
+}
+
+// ==== 多选 ====
+[class*="u-checkbox"] {
+  @include set-check(checkbox);
+}

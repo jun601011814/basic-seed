@@ -1,0 +1,8 @@
+// ======== 小元件样式表 ========
+@import "../modules/variables";
+@import "../modules/mixins";
+
+// ==== 图片容器 ====
+.u-image {
+  @include set-image-container;
+}

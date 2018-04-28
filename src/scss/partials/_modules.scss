@@ -1,0 +1,8 @@
+// ======== 可复用模块样式 ========
+@import "../modules/variables";
+@import "../modules/mixins";
+
+// ==== 弹出浮窗 ====
+[class*="m-modal"] {
+  @include set-modal;
+}
