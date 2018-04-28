@@ -1,4 +1,14 @@
-### gulp依赖说明
+## 运行环境
+1. 开发环境编译并监听，自动启动本地热更新服务器
+```
+npm run dev
+```
+2. 生产环境编译
+```javascript
+npm run build
+```
+
+## gulp依赖
 
 ```javascript
 {
@@ -20,7 +30,7 @@
 }
 ```
 
-### 配置css编译环境
+## 配置css编译环境
 
 1. 找到配置文件：build/gulp.config.js
 2. 修改cssLang变量
@@ -29,7 +39,7 @@ const cssLang = 'cssnext' // css编译器：scss || less || cssnext
 ```
 3. 重新运行gulp命令即可
 
-### 样式文件目录说明
+## 样式文件目录
 1. modules目录存放变量、混合宏等不生成css代码的文件
 2. partials目录存放布局、模块、icon、按钮、元件等在入口文件引入并生成css代码的文件
 3. style.less为默认入口文件（目前以引入的方式生成公共样式文件，不合并修改样式文件）
