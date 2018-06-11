@@ -147,7 +147,7 @@ gulp.task('watch', () => {
       $.util.log('======== 监听到文件变化 ========')
       console.log('变化类型：', e.type)
       console.log('文件路径：', e.path)
-      sequence([...task])(err => {
+      $.sequence([...task])(err => {
         if (err) console.log(err)
       })
     }).on('change', browserSync.reload)
