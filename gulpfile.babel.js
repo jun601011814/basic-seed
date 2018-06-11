@@ -11,7 +11,6 @@ import postcssImport from 'postcss-import'
 import postcssUrl from 'postcss-url'
 import cssnano from 'cssnano' // 压缩css
 
-
 // image相关
 import pngquant from 'imagemin-pngquant'  // 图片深度压缩
 
@@ -45,7 +44,7 @@ gulp.task('clean', () => {
 
 gulp.task('html', () => {
   $.util.log('======== 正在编译html文件 ========')
-  const cssExt = config.env === 'production' ? '.min.css' : '.css'
+  const cssExt = config.env === 'production' ? `.${config.hash}.min.css` : '.css' // 如果是生产环境，将css文件后缀改成.[hash].min.css
   let stream = gulp.src(config.src.html).pipe(
     $.replace(
       new RegExp('<link\s*.*href=".*(\.' + config.cssLang + ')"\s*.*\/?>', 'g'),
@@ -55,13 +54,13 @@ gulp.task('html', () => {
     )
   )
 
-
+  // 如果是生产环境，将js文件后缀名改成.[hash].min.js
   if (config.env === 'production') {
     stream = stream.pipe(
       $.replace(
         new RegExp('<script\s*.*src=".*(\.js)"\s*.*?><\/script>', 'g'),
         match => {
-          return match.replace('.js', '.min.js')
+          return match.replace('.js', `.${config.hash}.min.js`)
         }
       )
     )
@@ -159,11 +158,6 @@ gulp.task('init', cb => {
   return $.sequence('html', config.cssLang, 'script', 'image', 'copy', cb)
 })
 
-gulp.task('dev', ['clean'], cb => {
-  config.env = 'development'
-  $.sequence('init', 'server', 'watch', cb)
-})
-
 gulp.task('compresshtml', () => {
   $.util.log('======== 正在压缩html文件 ========')
   const options = {
@@ -174,32 +168,37 @@ gulp.task('compresshtml', () => {
   }
 
   return gulp.src(config.compress.html)
-  .pipe($.htmlmin(options))
-  .pipe(gulp.dest(config.dist.html))
+      .pipe($.htmlmin(options))
+      .pipe(gulp.dest(config.dist.html))
 })
 
 gulp.task('compresscss', () => {
   $.util.log('======== 正在压缩css文件 ========')
   return gulp.src(config.compress.css)
-  .pipe($.postcss([ cssnano ]))
-  .pipe($.rename({
-    extname: '.min.css'
-  }))
-  .pipe(gulp.dest(config.dist.css))
+      .pipe($.postcss([ cssnano ]))
+      .pipe($.rename({
+        extname: `.${config.hash}.min.css`
+      }))
+      .pipe(gulp.dest(config.dist.css))
 })
 
 gulp.task('compressscript', () => {
   $.util.log('======== 正在压缩js文件 ========')
   return gulp.src(config.compress.script)
-  .pipe($.uglify())
-  .pipe($.rename({
-    extname: '.min.js'
-  }))
-  .pipe(gulp.dest(config.dist.script))
+      .pipe($.uglify())
+      .pipe($.rename({
+        extname: `.${config.hash}.min.js`
+      }))
+      .pipe(gulp.dest(config.dist.script))
 })
 
 gulp.task('compress', cb => {
   return $.sequence('compresshtml', 'compresscss', 'compressscript', cb)
+})
+
+gulp.task('dev', ['clean'], cb => {
+  config.env = 'development'
+  $.sequence('init', 'server', 'watch', cb)
 })
 
 gulp.task('build', ['clean'], cb => {

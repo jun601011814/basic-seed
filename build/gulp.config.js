@@ -1,3 +1,4 @@
+import util from './util'
 const srcRoot = `./src`
 const distRoot = `./dist`
 const cssLang = `scss` // css编译器：scss || less || cssnext
@@ -37,13 +38,14 @@ const watch = {
 }
 
 const compress = {
-  html: `${distRoot}}/*.html`,
+  html: `${distRoot}/*.html`,
   css: `${distRoot}/css/**/*.css`,
   script: [`${distRoot}/js/**/*.js`, `!${distRoot}/**/*.min.js`]
 }
 
 export default {
   env: 'development',
+  hash: util.getRandomString(16),
   cssLang,
   postcss,
   src,
