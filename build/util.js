@@ -26,11 +26,12 @@ function getRandomString (length, maxLength = 0, randomLength = false) {
  * @returns {string}
  */
 function getChar () {
-  const baseStrings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
+  // const baseStrings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
+  const baseStrings = 'abcdefghijklmnopqrstuvwxyz1234567890'
   let char = ''
   do {
     char = baseStrings.charAt(Math.floor(Math.random() * baseStrings.length))
-  } while (!char)
+  } while (!char && char !== '0')
 
   return char
 }
