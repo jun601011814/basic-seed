@@ -2,6 +2,9 @@
 @import "../modules/variables";
 @import "../modules/mixins";
 
+// 重新设置特殊变量
+$root-path: "..";
+
 // ==== 图片容器 ====
 .u-image {
   @include set-image-container;

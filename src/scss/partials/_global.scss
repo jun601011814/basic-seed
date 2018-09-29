@@ -2,6 +2,9 @@
 @import "../modules/variables";
 @import "../modules/mixins";
 
+// 重新设置特殊变量
+$root-path: "..";
+
 body {
   @include set-size(100%, 100%);
   font-family: $font-family-default;

@@ -2,6 +2,9 @@
 @import "../modules/variables";
 @import "../modules/mixins";
 
+// 重新设置特殊变量
+$root-path: "..";
+
 // ==== 固定在页面上的顶部跟底部 ====
 .g-header,
 .g-footer {
