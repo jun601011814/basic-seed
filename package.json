@@ -4,7 +4,7 @@
   "description": "基于parcel的项目模板",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "cross-env NODE_ENV=development node build/serve.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/jun601011814/basic-seed/issues"
   },
-  "homepage": "https://github.com/jun601011814/basic-seed#readme"
+  "homepage": "https://github.com/jun601011814/basic-seed#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.19.1",
+    "parcel-bundler": "^1.12.3"
+  }
 }
