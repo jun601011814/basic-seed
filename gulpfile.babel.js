@@ -1,4 +1,3 @@
-import 'babel-register'
 import gulp from 'gulp'
 import loadPlugins from 'gulp-load-plugins' // 自动引入gulp插件（非gulp插件必须手动引入）
 const $ = loadPlugins()
