@@ -11,9 +11,11 @@ body {
   color: $font-color-default;
 }
 
-.p-body {
-  @include set-size(100%, 100%);
+[class|='p-'] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }

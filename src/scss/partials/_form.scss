@@ -28,11 +28,11 @@ textarea {
 }
 
 // ==== 单选 ====
-[class*="u-radio"] {
+[class|="u-radio"] {
   @include set-check(radio);
 }
 
 // ==== 多选 ====
-[class*="u-checkbox"] {
+[class|="u-checkbox"] {
   @include set-check(checkbox);
 }

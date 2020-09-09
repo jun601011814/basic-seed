@@ -5,8 +5,8 @@
 // 重新设置特殊变量
 $root-path: "..";
 
-[class*="u-icon"],
-[class*="u-logo"] {
+[class|="u-icon"],
+[class|="u-logo"] {
   @include set-icon;
 }
 
