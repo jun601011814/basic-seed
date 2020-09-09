@@ -5,6 +5,6 @@
 // 重新设置特殊变量
 $root-path: "..";
 
-[class*="u-btn"] {
+[class|="u-btn"] {
   @include set-button;
 }
