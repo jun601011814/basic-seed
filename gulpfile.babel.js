@@ -10,9 +10,6 @@ import postcssImport from 'postcss-import'
 import postcssUrl from 'postcss-url'
 import cssnano from 'cssnano' // 压缩css
 
-// image相关
-import pngquant from 'imagemin-pngquant'  // 图片深度压缩
-
 // 其他
 import browserSync from 'browser-sync' // 本地实时测试工具，用于启动一个热更新服务器
 import config from './build/gulp.config' // 配置文件
@@ -105,11 +102,13 @@ gulp.task('script', () => {
 gulp.task('image', () => {
   $.util.log('======== 正在压缩图片 ========')
   return gulp.src(config.src.image)
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
+      optimizationLevel: 5, // 取值范围：0-7（优化等级），默认：3
+      interlaced: true, // 隔行扫描gif进行渲染，默认：false
+      multipass: true, // 多次优化svg直到完全优化，默认：false
       progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
-      svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
-      use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
-    })))
+      svgoPlugins: [{removeViewBox: false}] //不要移除svg的viewbox属性
+    }))
     .pipe(gulp.dest(config.dist.image))
 })
 
@@ -123,9 +122,10 @@ gulp.task('server', () => {
   $.util.log('======== 正在启动服务器 ========')
   browserSync.init({
     server: {
-      baseDir: `${config.dist.root}/`
+      baseDir: `${config.dist.root}/`,
     },
-    browser: ['google chrome']
+    open: false
+    // browser: ['chrome']
   })
 })
 
